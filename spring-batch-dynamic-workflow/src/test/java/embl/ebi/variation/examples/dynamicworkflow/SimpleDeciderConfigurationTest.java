@@ -15,19 +15,22 @@
  */
 package embl.ebi.variation.examples.dynamicworkflow;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.batch.core.*;
-import org.springframework.batch.core.launch.JobLauncher;
+import org.springframework.batch.core.JobExecution;
+import org.springframework.batch.core.JobParameters;
+import org.springframework.batch.core.JobParametersBuilder;
+import org.springframework.batch.core.StepExecution;
+import org.springframework.batch.test.JobLauncherTestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 /**
  * Created by jmmut on 2015-10-14.
@@ -35,14 +38,12 @@ import static org.junit.Assert.assertTrue;
  * @author Jose Miguel Mut Lopez &lt;jmmut@ebi.ac.uk&gt;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {SimpleDeciderConfiguration.class})
+@ContextConfiguration(classes = {SimpleDeciderConfiguration.class, JobLauncherTestUtils.class})
 public class SimpleDeciderConfigurationTest {
 
     @Autowired
-    private Job job;
-    @Autowired
-    private JobLauncher jobLauncher;
-
+    private JobLauncherTestUtils jobLauncherTestUtils;
+	
     @Test
     public void testAllStepsDone() throws Exception {
         JobParameters parameters = new JobParametersBuilder()
@@ -50,7 +51,7 @@ public class SimpleDeciderConfigurationTest {
                 .addString("doStep3", "true")
                 .toJobParameters();
 
-        JobExecution execution = jobLauncher.run(job, parameters);
+        JobExecution execution = jobLauncherTestUtils.launchJob(parameters);
 
         assertEquals("COMPLETED", execution.getExitStatus().getExitCode());
         assertEquals(4, execution.getStepExecutions().size());
@@ -77,7 +78,7 @@ public class SimpleDeciderConfigurationTest {
                 .addString("doStep3", "false")
                 .toJobParameters();
 
-        JobExecution execution = jobLauncher.run(job, parameters);
+        JobExecution execution = jobLauncherTestUtils.launchJob(parameters);
 
         assertEquals("COMPLETED", execution.getExitStatus().getExitCode());
         assertEquals(2, execution.getStepExecutions().size());
@@ -97,7 +98,7 @@ public class SimpleDeciderConfigurationTest {
                 .addString("doStep2", "false")
                 .toJobParameters();
 
-        JobExecution execution = jobLauncher.run(job, parameters);
+        JobExecution execution = jobLauncherTestUtils.launchJob(parameters);
         assertEquals(3, execution.getStepExecutions().size());
 
         assertEquals("COMPLETED", execution.getExitStatus().getExitCode());
@@ -120,7 +121,7 @@ public class SimpleDeciderConfigurationTest {
                 .addString("doStep3", "false")
                 .toJobParameters();
 
-        JobExecution execution = jobLauncher.run(job, parameters);
+        JobExecution execution = jobLauncherTestUtils.launchJob(parameters);
 
         assertEquals("COMPLETED", execution.getExitStatus().getExitCode());
         assertEquals(3, execution.getStepExecutions().size());
@@ -143,7 +144,7 @@ public class SimpleDeciderConfigurationTest {
                 .addString("doStep4", "false")
                 .toJobParameters();
 
-        JobExecution execution = jobLauncher.run(job, parameters);
+        JobExecution execution = jobLauncherTestUtils.launchJob(parameters);
 
         assertEquals("COMPLETED", execution.getExitStatus().getExitCode());
         assertEquals(3, execution.getStepExecutions().size());
