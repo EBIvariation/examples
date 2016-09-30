@@ -12,7 +12,7 @@ public class RestResourceServer extends ResourceServerConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
         http.anonymous() // Enable anonymous / configure any related anonymous role
                 .and()
-                .authorizeRequests().antMatchers("/heartbeat").permitAll() //Authorize /hearbeat for everybody
+                .authorizeRequests().antMatchers("/heartbeat","/getFile","/getFile2**").permitAll() //Authorize /hearbeat for everybody
                 .antMatchers("/**").authenticated() // The rest need to be authenticated
         ;
     }
