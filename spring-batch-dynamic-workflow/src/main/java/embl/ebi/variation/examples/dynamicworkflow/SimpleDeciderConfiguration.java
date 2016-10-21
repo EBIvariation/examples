@@ -52,6 +52,7 @@ public class SimpleDeciderConfiguration {
     public Job simpleDeciderJob() {
         JobBuilder jobBuilder = jobBuilderFactory
                 .get(jobName)
+                .validator(new SkippableStepsParametersValidator())
                 .incrementer(new RunIdIncrementer());
 
         StepTwoDecider s2d = new StepTwoDecider();
