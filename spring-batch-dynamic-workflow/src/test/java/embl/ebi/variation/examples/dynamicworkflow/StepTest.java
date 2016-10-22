@@ -22,7 +22,7 @@ public class StepTest {
     @Test
     public void testStep1() {
         JobParameters parameters = new JobParametersBuilder()
-//                .addString("hello", "something")
+                .addString("name", "MyName")
 //                .addString("doStep2", "true")
                 .addString("doStep3", "true")
                 .toJobParameters();

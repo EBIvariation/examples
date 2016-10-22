@@ -44,7 +44,7 @@ public class SimpleDeciderConfigurationTest {
     @Test
     public void testAllStepsDone() throws Exception {
         JobParameters parameters = new JobParametersBuilder()
-                .addString("hello", "something")
+                .addString("name", "MyName")
                 .addString("doStep2", "true")
                 .addString("doStep3", "true")
                 .toJobParameters();
@@ -72,7 +72,7 @@ public class SimpleDeciderConfigurationTest {
     @Test
     public void testOnlyFirstAndLastDone() throws Exception {
         JobParameters parameters = new JobParametersBuilder()
-                .addString("hello", "something")
+                .addString("name", "MyName")
                 .addString("doStep2", "false")
                 .addString("doStep3", "false")
                 .toJobParameters();
@@ -94,7 +94,7 @@ public class SimpleDeciderConfigurationTest {
     @Test
     public void testSkipStep2() throws Exception {
         JobParameters parameters = new JobParametersBuilder()
-                .addString("hello", "something")
+                .addString("name", "MyName")
                 .addString("doStep2", "false")
                 .toJobParameters();
 
@@ -118,7 +118,7 @@ public class SimpleDeciderConfigurationTest {
     @Test
     public void testSkipStep3() throws Exception {
         JobParameters parameters = new JobParametersBuilder()
-                .addString("hello", "something")
+                .addString("name", "MyName")
                 .addString("doStep3", "false")
                 .toJobParameters();
 
@@ -142,7 +142,7 @@ public class SimpleDeciderConfigurationTest {
     @Test
     public void testSkipStep4() throws Exception {
         JobParameters parameters = new JobParametersBuilder()
-                .addString("hello", "something")
+                .addString("name", "MyName")
                 .addString("doStep4", "false")
                 .toJobParameters();
 

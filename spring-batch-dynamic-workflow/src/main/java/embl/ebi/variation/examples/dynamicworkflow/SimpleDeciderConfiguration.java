@@ -39,8 +39,8 @@ import org.springframework.core.task.SimpleAsyncTaskExecutor;
 @EnableBatchProcessing
 public class SimpleDeciderConfiguration {
 
-    public static final String jobName = "simpleDeciderJob";
-    private static final int duration = 1000;
+    public static final String JOB_NAME = "simpleDeciderJob";
+    public static final int DURATION = 1000;
 
     @Autowired
     private JobBuilderFactory jobBuilderFactory;
@@ -51,7 +51,7 @@ public class SimpleDeciderConfiguration {
     @Bean
     public Job simpleDeciderJob() {
         JobBuilder jobBuilder = jobBuilderFactory
-                .get(jobName)
+                .get(JOB_NAME)
                 .validator(new SkippableStepsParametersValidator())
                 .incrementer(new RunIdIncrementer());
 
@@ -95,15 +95,16 @@ public class SimpleDeciderConfiguration {
 
     public Step step1() {
         StepBuilder step1 = stepBuilderFactory.get("step1");
-        TaskletStepBuilder tasklet = step1.tasklet(new Tasklet() {
-            
-            @Override
-            public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
-                System.out.println("*** Running step 1");
-                Thread.sleep(duration);
-                return RepeatStatus.FINISHED;
-            }
-        });
+        TaskletStepBuilder tasklet = step1.tasklet(new StepOne());
+//        TaskletStepBuilder tasklet = step1.tasklet(new Tasklet() {
+//            
+//            @Override
+//            public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
+//                System.out.println("*** Running step 1");
+//                Thread.sleep(DURATION);
+//                return RepeatStatus.FINISHED;
+//            }
+//        });
 
         // true: every job execution will do this step, even if this step is already COMPLETED
         // false: if the job was aborted and is relaunched, this step will NOT be done again
@@ -118,7 +119,7 @@ public class SimpleDeciderConfiguration {
             @Override
             public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
                 System.out.println("*** Running step 2");
-                Thread.sleep(duration);
+                Thread.sleep(DURATION);
                 return RepeatStatus.FINISHED;
             }
         });
@@ -136,7 +137,7 @@ public class SimpleDeciderConfiguration {
             @Override
             public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
                 System.out.println("*** Running step 3");
-                Thread.sleep(duration);
+                Thread.sleep(DURATION);
                 return RepeatStatus.FINISHED;
             }
         });
@@ -154,7 +155,7 @@ public class SimpleDeciderConfiguration {
             @Override
             public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
                 System.out.println("*** Running step 4");
-                Thread.sleep(duration);
+                Thread.sleep(DURATION);
                 return RepeatStatus.FINISHED;
             }
         });
@@ -165,5 +166,5 @@ public class SimpleDeciderConfiguration {
 
         return tasklet.build();
     }
-    
+
 }

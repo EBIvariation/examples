@@ -7,7 +7,7 @@ import org.springframework.batch.core.job.DefaultJobParametersValidator;
 public class SkippableStepsParametersValidator extends DefaultJobParametersValidator {
     
     public SkippableStepsParametersValidator() {
-        super(new String[]{ "hello" }, // mandatory parameters
+        super(new String[]{ "name" }, // mandatory parameters
               new String[]{ }); // optional parameters
     }
 
@@ -17,7 +17,7 @@ public class SkippableStepsParametersValidator extends DefaultJobParametersValid
         
         if (parameters.getString("doStep2") != null) {
             try {
-                Boolean.parseBoolean(parameters.getString("doStep2", "true"));
+                Boolean.parseBoolean(parameters.getString("doStep2"));
             } catch (Exception e) {
                 throw new JobParametersInvalidException("Step 2 option incorrect");
             }
@@ -25,7 +25,7 @@ public class SkippableStepsParametersValidator extends DefaultJobParametersValid
         
         if (parameters.getString("doStep3") != null) {
             try {
-                Boolean.parseBoolean(parameters.getString("doStep3", "true"));
+                Boolean.parseBoolean(parameters.getString("doStep3"));
             } catch (Exception e) {
                 throw new JobParametersInvalidException("Step 3 option incorrect");
             }
@@ -33,7 +33,7 @@ public class SkippableStepsParametersValidator extends DefaultJobParametersValid
         
         if (parameters.getString("doStep4") != null) {
             try {
-                Boolean.parseBoolean(parameters.getString("doStep4", "true"));
+                Boolean.parseBoolean(parameters.getString("doStep4"));
             } catch (Exception e) {
                 throw new JobParametersInvalidException("Step 4 option incorrect");
             }
