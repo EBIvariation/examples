@@ -1,0 +1,91 @@
+{ 
+    "annotId" : "1_770502_G_A", 
+        "ct" : [
+            {
+                "gn" : "RP11-206L10.2", 
+                "ensg" : "ENSG00000228327", 
+                "enst" : "ENST00000428504", 
+                "codon" : "-", 
+                "strand" : "-", 
+                "bt" : "transcribed_unprocessed_pseudogene", 
+                "aaChange" : "-", 
+                "so" : [
+                    1627, 
+                    1619
+                ]
+            }, 
+            {
+                "gn" : "RP11-206L10.2", 
+                "ensg" : "ENSG00000228327", 
+                "enst" : "ENST00000506640", 
+                "codon" : "-", 
+                "strand" : "-", 
+                "bt" : "processed_transcript", 
+                "aaChange" : "-", 
+                "so" : [
+                    1627, 
+                    1619
+                ]
+            }, 
+            {
+                "gn" : "RP5-857K21.4", 
+                "ensg" : "ENSG00000230021", 
+                "enst" : "ENST00000634337", 
+                "codon" : "-", 
+                "strand" : "-", 
+                "bt" : "lincRNA", 
+                "aaChange" : "-", 
+                "so" : [
+                    1627, 
+                    1619
+                ]
+            }, 
+            {
+                "gn" : "RP5-857K21.4", 
+                "ensg" : "ENSG00000230021", 
+                "enst" : "ENST00000635509", 
+                "codon" : "-", 
+                "strand" : "-", 
+                "bt" : "lincRNA", 
+                "aaChange" : "-", 
+                "so" : [
+                    1627, 
+                    1619
+                ]
+            }
+        ], 
+        "xrefs" : [
+            {
+                "id" : "RP5-857K21.4", 
+                "src" : "HGNC"
+            }, 
+            {
+                "id" : "ENSG00000230021", 
+                "src" : "ensemblGene"
+            }, 
+            {
+                "id" : "ENSG00000228327", 
+                "src" : "ensemblGene"
+            }, 
+            {
+                "id" : "ENST00000506640", 
+                "src" : "ensemblTranscript"
+            }, 
+            {
+                "id" : "ENST00000634337", 
+                "src" : "ensemblTranscript"
+            }, 
+            {
+                "id" : "ENST00000635509", 
+                "src" : "ensemblTranscript"
+            }, 
+            {
+                "id" : "ENST00000428504", 
+                "src" : "ensemblTranscript"
+            }, 
+            {
+                "id" : "RP11-206L10.2", 
+                "src" : "HGNC"
+            }
+        ]
+    }

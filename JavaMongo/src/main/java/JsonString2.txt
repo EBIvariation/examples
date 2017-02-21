@@ -1,0 +1,62 @@
+{
+        "ct" : [
+            {
+                "gn" : "FAM41C", 
+                "ensg" : "ENSG00000230368", 
+                "enst" : "ENST00000427857", 
+                "codon" : "-", 
+                "strand" : "-", 
+                "bt" : "lincRNA", 
+                "aaChange" : "-", 
+                "so" : [
+                    1632
+                ]
+            }, 
+            {
+                "gn" : "FAM41C", 
+                "ensg" : "ENSG00000230368", 
+                "enst" : "ENST00000432963", 
+                "codon" : "-", 
+                "strand" : "-", 
+                "bt" : "lincRNA", 
+                "aaChange" : "-", 
+                "so" : [
+                    1632
+                ]
+            }, 
+            {
+                "gn" : "FAM41C", 
+                "ensg" : "ENSG00000230368", 
+                "enst" : "ENST00000446136", 
+                "codon" : "-", 
+                "strand" : "-", 
+                "bt" : "lincRNA", 
+                "aaChange" : "-", 
+                "so" : [
+                    1632
+                ]
+            }
+        ], 
+        "xrefs" : [
+            {
+                "id" : "ENST00000446136", 
+                "src" : "ensemblTranscript"
+            }, 
+            {
+                "id" : "ENST00000432963", 
+                "src" : "ensemblTranscript"
+            }, 
+            {
+                "id" : "FAM41C", 
+                "src" : "HGNC"
+            }, 
+            {
+                "id" : "ENST00000427857", 
+                "src" : "ensemblTranscript"
+            }, 
+            {
+                "id" : "ENSG00000230368", 
+                "src" : "ensemblGene"
+            }
+        ]
+    }
