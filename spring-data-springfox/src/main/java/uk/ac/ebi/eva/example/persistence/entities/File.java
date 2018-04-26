@@ -17,6 +17,8 @@
  */
 package uk.ac.ebi.eva.example.persistence.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.ApiModelProperty;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -49,23 +51,35 @@ public class File {
 
     }
 
+    @ApiModelProperty(position = 1, allowEmptyValue = true, readOnly = true)
+    @JsonProperty
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @ApiModelProperty(position = 2, required = true)
+    @JsonProperty
     @Column(nullable = false)
     private String name;
 
+    @ApiModelProperty(position = 3, required = true)
+    @JsonProperty
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Type type;
 
+    @ApiModelProperty(position = 4, required = true)
+    @JsonProperty
     private long size;
 
+    @ApiModelProperty(position = 5, allowEmptyValue = true, readOnly = true)
+    @JsonProperty
     @CreatedDate
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdDate;
 
+    @ApiModelProperty(position = 6, allowEmptyValue = true, readOnly = true)
+    @JsonProperty
     @LastModifiedDate
     @Column(nullable = false)
     private LocalDateTime lastModifiedDate;

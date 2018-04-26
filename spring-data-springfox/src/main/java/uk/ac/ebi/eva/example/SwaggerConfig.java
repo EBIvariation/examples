@@ -62,7 +62,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.any())
-                //.paths(getScanRestServicesPathPredicate())
+                .paths(getScanRestServicesPathPredicate())
                 .build()
                 .apiInfo(getApiInfo())
                 .pathMapping("/")
