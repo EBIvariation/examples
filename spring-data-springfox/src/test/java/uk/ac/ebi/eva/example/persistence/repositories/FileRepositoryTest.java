@@ -29,6 +29,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertNotNull;
 import static junit.framework.TestCase.assertNotSame;
 import static junit.framework.TestCase.assertNull;
 import static junit.framework.TestCase.assertTrue;
@@ -123,6 +124,23 @@ public class FileRepositoryTest {
         List<File> file = repository.findAllByTypeAndNameOrderByCreatedDateDesc(File.Type.BAM, "test-file");
         assertTrue(file.get(0).getCreatedDate().isAfter(file.get(1).getCreatedDate()));
         assertEquals(2, file.size());
+    }
+
+    @Test
+    public void testSetType() {
+        assertEquals(0, repository.count());
+        repository.save(new File("test-file", File.Type.BAM, 100L));
+        repository.save(new File("test-file2", File.Type.BAM, 100L));
+        repository.save(new File("test-file3", File.Type.CRAM, 100L));
+        File file = repository.save(new File("test-file4", File.Type.BAM, 100L));
+        assertEquals(4, repository.count());
+
+        assertNull(repository.findByType(File.Type.COMPRESSED_VCF));
+
+        repository.setType(file.getId(), File.Type.COMPRESSED_VCF);
+
+        assertNotNull(repository.findByType(File.Type.COMPRESSED_VCF));
+        assertEquals(file.getId(), repository.findByType(File.Type.COMPRESSED_VCF).getId());
     }
 
 }
