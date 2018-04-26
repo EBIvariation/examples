@@ -26,6 +26,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import uk.ac.ebi.eva.example.persistence.entities.File;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNotSame;
@@ -97,6 +98,31 @@ public class FileRepositoryTest {
         assertNotSame(updated1, updated2);
     }
 
+    @Test
+    public void testFindAllTypeOrdered() {
+        assertEquals(0, repository.count());
+        repository.save(new File("test-file", File.Type.BAM, 100L));
+        repository.save(new File("test-file2", File.Type.BAM, 100L));
+        repository.save(new File("test-file3", File.Type.CRAM, 100L));
+        repository.save(new File("test-file4", File.Type.BAM, 100L));
+        assertEquals(4, repository.count());
 
+        assertEquals("test-file", repository.findAllByTypeOrderByCreatedDateAsc(File.Type.BAM).get(0).getName());
+        assertEquals("test-file4", repository.findAllByTypeOrderByCreatedDateDesc(File.Type.BAM).get(0).getName());
+    }
+
+    @Test
+    public void testFindAllTypeAndNameOrdered() {
+        assertEquals(0, repository.count());
+        repository.save(new File("test-file", File.Type.BAM, 100L));
+        repository.save(new File("test-file", File.Type.BAM, 100L));
+        repository.save(new File("test-file3", File.Type.CRAM, 100L));
+        repository.save(new File("test-file4", File.Type.BAM, 100L));
+        assertEquals(4, repository.count());
+
+        List<File> file = repository.findAllByTypeAndNameOrderByCreatedDateDesc(File.Type.BAM, "test-file");
+        assertTrue(file.get(0).getCreatedDate().isAfter(file.get(1).getCreatedDate()));
+        assertEquals(2, file.size());
+    }
 
 }

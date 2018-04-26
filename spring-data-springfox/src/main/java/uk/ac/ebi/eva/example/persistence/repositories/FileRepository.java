@@ -22,6 +22,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import uk.ac.ebi.eva.example.persistence.entities.File;
 
 import java.util.Collection;
+import java.util.List;
 
 @RepositoryRestResource
 public interface FileRepository extends CrudRepository<File, Long> {
@@ -29,5 +30,11 @@ public interface FileRepository extends CrudRepository<File, Long> {
     File findByType(File.Type type);
 
     Collection<File> findAllByType(File.Type type);
+
+    List<File> findAllByTypeOrderByCreatedDateAsc(File.Type type);
+
+    List<File> findAllByTypeOrderByCreatedDateDesc(File.Type type);
+
+    List<File> findAllByTypeAndNameOrderByCreatedDateDesc(File.Type type, String name);
 
 }
