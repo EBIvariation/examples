@@ -21,9 +21,13 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import uk.ac.ebi.eva.example.persistence.entities.File;
 
+import java.util.Collection;
+
 @RepositoryRestResource
 public interface FileRepository extends CrudRepository<File, Long> {
 
     File findByType(File.Type type);
+
+    Collection<File> findAllByType(File.Type type);
 
 }

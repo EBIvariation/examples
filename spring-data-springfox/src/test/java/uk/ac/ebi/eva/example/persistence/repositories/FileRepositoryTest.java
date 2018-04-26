@@ -54,6 +54,17 @@ public class FileRepositoryTest {
         assertNull(repository.findByType(File.Type.CRAM));
     }
 
-    
+    @Test
+    public void testFindAllType() {
+        assertEquals(0, repository.count());
+        repository.save(new File("test-file", File.Type.BAM, 100L));
+        repository.save(new File("test-file2", File.Type.BAM, 100L));
+        repository.save(new File("test-file3", File.Type.CRAM, 100L));
+        repository.save(new File("test-file4", File.Type.BAM, 100L));
+        assertEquals(4, repository.count());
+
+        assertEquals(3,repository.findAllByType(File.Type.BAM).size());
+        assertEquals(1,repository.findAllByType(File.Type.CRAM).size());
+    }
 
 }
