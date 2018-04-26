@@ -31,6 +31,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 @Entity
@@ -58,17 +61,20 @@ public class File {
     private Long id;
 
     @ApiModelProperty(position = 2, required = true)
+    @Size(min = 4, max = 100)
     @JsonProperty
     @Column(nullable = false)
     private String name;
 
     @ApiModelProperty(position = 3, required = true)
+    @NotNull
     @JsonProperty
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Type type;
 
     @ApiModelProperty(position = 4, required = true)
+    @DecimalMin(value = "1")
     @JsonProperty
     private long size;
 
