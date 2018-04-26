@@ -24,4 +24,6 @@ import uk.ac.ebi.eva.example.persistence.entities.File;
 @RepositoryRestResource
 public interface FileRepository extends CrudRepository<File, Long> {
 
+    File findByType(File.Type type);
+
 }
