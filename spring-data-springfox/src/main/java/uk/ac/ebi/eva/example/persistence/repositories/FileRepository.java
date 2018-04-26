@@ -18,6 +18,7 @@
 package uk.ac.ebi.eva.example.persistence.repositories;
 
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import uk.ac.ebi.eva.example.persistence.entities.File;
 
@@ -25,16 +26,16 @@ import java.util.Collection;
 import java.util.List;
 
 @RepositoryRestResource
-public interface FileRepository extends CrudRepository<File, Long>, FileRepositoryExtension{
+public interface FileRepository extends CrudRepository<File, Long>, FileRepositoryExtension {
 
-    File findByType(File.Type type);
+    File findByType(@Param("type") File.Type type);
 
-    Collection<File> findAllByType(File.Type type);
+    Collection<File> findAllByType(@Param("type") File.Type type);
 
-    List<File> findAllByTypeOrderByCreatedDateAsc(File.Type type);
+    List<File> findAllByTypeOrderByCreatedDateAsc(@Param("type") File.Type type);
 
-    List<File> findAllByTypeOrderByCreatedDateDesc(File.Type type);
+    List<File> findAllByTypeOrderByCreatedDateDesc(@Param("type") File.Type type);
 
-    List<File> findAllByTypeAndNameOrderByCreatedDateDesc(File.Type type, String name);
+    List<File> findAllByTypeAndNameOrderByCreatedDateDesc(@Param("type") File.Type type, @Param("name") String name);
 
 }
